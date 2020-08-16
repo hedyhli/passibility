@@ -60,22 +60,21 @@ module.exports = require("os");
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
 const core = __webpack_require__(470);
-const wait = __webpack_require__(949);
+const pass = __webpack_require__(690);
 
 
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    const ms = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
-
-    core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
-    core.info((new Date()).toTimeString());
-
-    core.setOutput('time', new Date().toTimeString());
+    const perc = parseInt(core.getInput('percentage'))
+    core.info(`Started. Your pass percentage is: ${perc}`)
+    const canPass = pass.willPass(perc)
+    core.debug(`willPass(${perc}) returned ${canPass}`)
+    if (canPass) core.setOutput("Passed!")
+    if (!canPass) core.setFailed("Failed...")
   } catch (error) {
-    core.setFailed(error.message);
+    core.setOutput("Oh, no! An error occured...")
+    core.setFailed(error.message)
   }
 }
 
@@ -419,20 +418,27 @@ module.exports = require("path");
 
 /***/ }),
 
-/***/ 949:
+/***/ 690:
 /***/ (function(module) {
 
-let wait = function (milliseconds) {
-  return new Promise((resolve) => {
-    if (typeof milliseconds !== 'number') {
-      throw new Error('milliseconds not a number');
+const willPass = function (perc) {
+    /**
+     * Returns true/false based on probability given
+     */
+    if (!(typeof perc === 'number')) {
+        throw new Error("perc is not a number")
     }
-    setTimeout(() => resolve("done!"), milliseconds)
-  });
-};
 
-module.exports = wait;
+    if (perc >= 100) return true
 
+    // get random int
+    let value = Math.floor(Math.random() * Math.floor(100)) + 1
+    
+    // return boolean
+    return value <= perc
+}
+
+module.exports = {willPass}
 
 /***/ })
 
