@@ -1,23 +1,22 @@
-const wait = require('./wait');
+const pass = require('./pass');
 const process = require('process');
 const cp = require('child_process');
 const path = require('path');
 
-test('throws invalid number', async () => {
-  await expect(wait('foo')).rejects.toThrow('milliseconds not a number');
+test('throws not a number', async () => {
+  await expect(() => {pass.willPass('foo')}).toThrow("perc is not a number");
 });
 
-test('wait 500 ms', async () => {
-  const start = new Date();
-  await wait(500);
-  const end = new Date();
-  var delta = Math.abs(end - start);
-  expect(delta).toBeGreaterThan(450);
+test('must pass must fail', async () => {
+  for (let i=0; i<=100; i++) {
+    await expect(pass.willPass(100)).toBe(true)
+    await expect(pass.willPass(0)).toBe(false)
+  }
 });
 
 // shows how the runner will run a javascript action with env / stdout protocol
 test('test runs', () => {
-  process.env['INPUT_MILLISECONDS'] = 500;
+  process.env['INPUT_PERCENTAGE'] = 100;
   const ip = path.join(__dirname, 'index.js');
   console.log(cp.execSync(`node ${ip}`, {env: process.env}).toString());
 })

@@ -1,10 +1,10 @@
 name: 'Wait'
 description: 'Wait a designated number of milliseconds'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  percentage:  # id of input
+    description: 'controlled percentage of the action passing'
     required: true
-    default: '1000'
+    default: '50'
 outputs:
   time: # output will be available to future steps
     description: 'The message to output'

@@ -1,20 +1,19 @@
 const core = require('@actions/core');
-const wait = require('./wait');
+const pass = require('./pass');
 
 
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    const ms = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
-
-    core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
-    core.info((new Date()).toTimeString());
-
-    core.setOutput('time', new Date().toTimeString());
+    const perc = parseInt(core.getInput('percentage'))
+    core.info(`Started. Your pass percentage is: ${perc}`)
+    const canPass = pass.willPass(perc)
+    core.debug(`willPass(${perc}) returned ${canPass}`)
+    if (canPass) core.setOutput("Passed!")
+    if (!canPass) core.setFailed("Failed...")
   } catch (error) {
-    core.setFailed(error.message);
+    core.setOutput("Oh, no! An error occured...")
+    core.setFailed(error.message)
   }
 }
 
