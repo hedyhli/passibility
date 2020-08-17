@@ -11,6 +11,10 @@ test('must pass must fail', async () => {
   for (let i=0; i<=100; i++) {
     await expect(pass.willPass(100)).toBe(true)
     await expect(pass.willPass(0)).toBe(false)
+    await expect(pass.willPass(1000)).toBe(true)
+    await expect(pass.willPass(-0)).toBe(false)
+    await expect(pass.willPass(101)).toBe(true)
+    await expect(pass.willPass(-100)).toBe(false)
   }
 });
 
