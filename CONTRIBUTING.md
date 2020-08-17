@@ -23,12 +23,19 @@ cd passibility
 3. Run `npm install` to install all the dependencies
 4. Switch to a new branch (optional): `git checkout -b branch-name`
 5. Make the neccessary changes, the JavaScript code is in `index.js`, `index.test.js` and `pass.js`. 
-   Don't need to change anything in `dist/`
-6. run linting and tests using `npm run lint` and `npm test`
+   You don't need to change anything in `dist/`.
+   It is recommended that you add tests when needed, and format your code properly.
+6. Run linting and tests using `npm run lint` and `npm test`
 7. Run `npm run prepare` to build the changes into `dist/`
 8. stage and commit new changes: `git add . && git commit -m 'commit message here'
 9. Push your changes `git push -u origin branch-name`
-10. Open a PR when you are ready
+10. It is recommended that you test it yourself by creating a test repo, and use the workflow using
+```yaml
+- uses: username/passibility@branch-name
+  with:
+    percentage: 10
+```
+11. Open a PR when you are ready
 
 ### Scripts
 
