@@ -5,7 +5,7 @@ You can choose to make this action fail all the time, pass all the time, and any
 ### Example workflow
 
 ```yaml
-name: "Will I Pass"
+name: "Will I Pass..."
 on: push
 
 jobs:
