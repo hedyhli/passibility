@@ -1,6 +1,6 @@
 {
   "name": "passibility-action",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "GitHub Action to control the probability of it passing/failing",
   "main": "index.js",
   "scripts": {
