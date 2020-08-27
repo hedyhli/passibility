@@ -1,6 +1,6 @@
 {
   "name": "passibility-action",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "GitHub Action to control the probability of it passing/failing",
   "main": "index.js",
   "scripts": {
@@ -25,11 +25,11 @@
   },
   "homepage": "https://github.com/hedythedev/passibility#readme",
   "dependencies": {
-    "@actions/core": "^1.1.1"
+    "@actions/core": "^1.2.5"
   },
   "devDependencies": {
     "@zeit/ncc": "^0.22.3",
     "eslint": "^7.7.0",
-    "jest": "^26.1.0"
+    "jest": "^26.4.2"
   }
 }

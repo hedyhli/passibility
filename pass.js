@@ -7,6 +7,7 @@ const willPass = function (perc) {
     }
 
     if (perc >= 100) return true
+    if (perc <= 0) return false
 
     // get random int
     let value = Math.floor(Math.random() * Math.floor(100)) + 1

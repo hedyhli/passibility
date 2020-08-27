@@ -1,5 +1,8 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'passibility'
+description: 'Control the probability of the action from passing and failing'
+branding:
+  icon: 'arrow-right'
+  color: 'green'
 inputs:
   percentage:  # id of input
     description: 'controlled percentage of the action passing'
